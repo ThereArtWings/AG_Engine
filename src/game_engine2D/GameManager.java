@@ -3,6 +3,7 @@ import processing.core.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 import java.util.ArrayList;
+import components2D.BoundingBox;
 
 public class GameManager {
     public PApplet parent;
@@ -31,6 +32,8 @@ public class GameManager {
         }
     }
     public void UpdateAll() {
+    	parent.pushMatrix();
+    	parent.translate(offset.x, offset.y);
     	parent.background(background);
         for(int i = 0; i < gameObjects.size(); i++){
         	

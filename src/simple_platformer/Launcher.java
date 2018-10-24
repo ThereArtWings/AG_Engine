@@ -32,7 +32,7 @@ public class Launcher extends BaseLauncher{
         	platform = new Platform(parent, x, y, tw, th);
         	platform.start();
         	this.gameManager.addObject(platform);
-        	this.gameManager.addGameBoundingBoxes(platform);
+        //	this.gameManager.addGameBoundingBoxes(platform);
         }
    
     }

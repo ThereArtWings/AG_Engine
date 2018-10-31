@@ -22,9 +22,9 @@ public class BoxCollider2D extends ProcessingEntity
 		BoundingBox prev_bb;
 		prev_bb = this.transform.PreviousWorldBoundingBox();
 		BoundingBox tile_bb = hitInfo.boundingBox;
-		if(this.transform.position.y > tile_bb.top %% this.transform.position.y < tile_bb.bottom)
+		if(this.transform.position.y > tile_bb.top && this.transform.position.y < tile_bb.bottom)
 		{
-			if (new_bb.left < tile_bb.right && new_bb.right > tile_bb.left)
+			if (new_bb.left < tile_bb.right && new_bb.right > tile_bb.right)
 			{
 				hitInfo.hitSide = SIDES.RIGHT;
 				hitInfo.didHit = true;
@@ -32,7 +32,7 @@ public class BoxCollider2D extends ProcessingEntity
 			if (new_bb.left < tile_bb.left && new_bb.right > tile_bb.left)
 			{
 				hitInfo.hitSide = SIDES.LEFT;
-				hitInfo.didHIT = true;
+				hitInfo.didHit = true;
 			}
 		}
 		else if (new_bb.right > tile_bb.left && new_bb.left < tile_bb.right)

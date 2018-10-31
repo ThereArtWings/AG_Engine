@@ -5,7 +5,7 @@ import processing.core.PVector;
 
 public class Camera extends GameObject {
 		public GameObject follow;
-		public float offsetLimit = 100;
+		public float offsetLimit = 10;
 		public PVector cameraOffset = new PVector(0, 0);
 		public Camera(PApplet p, GameObject f) {
 			super(p);

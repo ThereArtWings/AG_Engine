@@ -16,8 +16,8 @@ public class Launcher extends BaseLauncher{
         Player player = new Player(parent, parent.width/2,parent.height/2, 60, 60);
         player.start();
         this.gameManager.addObject(player);
-        Camera camera = new Camera(parent, player, 99);
-        camera.cameraOffset.y = 90;
+        Camera camera = new Camera(parent, player, 0);
+        camera.cameraOffset.y = 0;
         this.gameManager.addObject(camera);
         int platforms = 500;
         Tile platform;
@@ -32,9 +32,9 @@ public class Launcher extends BaseLauncher{
         	platform = new Platform(parent, x, y, tw, th);
         	platform.start();
         	this.gameManager.addObject(platform);
-        //	this.gameManager.addGameBoundingBoxes(platform);
+        	this.gameManager.addGameBoundingBoxes(platform);
         }
-   
+        this.gameManager.StartAll(); 
     }
 	  public void UpdateAll(){
 	        super.UpdateAll();

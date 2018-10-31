@@ -1,6 +1,7 @@
 package components2D;
 
 import java.util.ArrayList;
+
 import game_engine2D.GameManager;
 import processing.core.*;
 
@@ -21,7 +22,7 @@ public class BasicSpatialGrid
 	private Coord globalMin = new Coord(999999,999999);
 	private Coord globalMax = new Coord(-999999,-999999);
 	
-	private ArrayList<SpatialGridCell> spaticalGridCells;
+	private ArrayList<SpatialGridCell> spatialGridCells;
 	
 	public BasicSpatialGrid(int h, int _gridRes)
 	{
@@ -64,17 +65,17 @@ public class BasicSpatialGrid
 		{
 			for (int y=0; y<=gridLengthY; y++)
 			{
-				int 1 = x * gridSize;
+				int l = x * gridSize;
 				int r = (x +1) * gridSize;
-				int t = t * gridSize;
+				int t = y * gridSize;
 				int b = (y +1) * gridSize;
-				spatialGridCells.add(new SpatialGridCell(1, r, t, b))
+				spatialGridCells.add(new SpatialGridCell(l, r, t, b));
 			}
 		}
 	}
 	private void populateGrid ()
 	{
-		for (int i = 0; i < GameManager.gameBoundingBoxes.get(i))
+		for (int i = 0; i < GameManager.gameBoundingBoxes.size(); i++)
 		{
 			BoundingBox bb = GameManager.gameBoundingBoxes.get(i);
 			addToGrid(bb);
@@ -82,10 +83,40 @@ public class BasicSpatialGrid
 	}
 	private void addToGrid(BoundingBox _bb)
 	{
-		Coord pos = gridCoordinated(_bb.right, _bb.bottom);
+		Coord pos = gridCoordinates(_bb.right, _bb.bottom);
 		int index = pos.x * gridLengthX + pos.y;
 		addByIndexTo(index, _bb);
 		pos = gridCoordinates(_bb.left, _bb.bottom);
-		
+		index = pos.x * gridLengthX + pos.y;
+		addByIndexTo(index, _bb);
+		pos = gridCoordinates(_bb.left, _bb.top);
+		index = pos.x * gridLengthX + pos.y;
+		addByIndexTo(index, _bb);
+		pos = gridCoordinates(_bb.right, _bb.top);
+		index = pos.x * gridLengthX + pos.y;
+		addByIndexTo(index, _bb);
+	}
+	private void addByIndexTo(int index, BoundingBox _bb)
+	{
+		if (index < spatialGridCells.size())
+		{
+			SpatialGridCell b = spatialGridCells.get(index);
+			boolean retval = b.subBoundingBoxes.contains(_bb);
+			if (!retval) b.subBoundingBoxes.add(_bb);
+		}else {
+			outOfBounds ++;
+		}
+	}
+	private Coord gridCoordinates(float x, float y)
+	{
+		int gridPosX = PApplet.abs((int)PApplet.ceil(((globalMin.x - x) / gridSize)));
+		int gridPosY = PApplet.abs((int)PApplet.ceil(((globalMin.y - y) / gridSize)));
+		return new Coord(gridPosX, gridPosY);
+	}
+	public ArrayList<BoundingBox> queryGrid(BoundingBox _bb)
+	{
+		Coord pos = gridCoordinates(_bb.right, _bb.bottom);
+		int index = pos.x * gridLengthX + pos.y;
+		return spatialGridCells.get(index).subBoundingBoxes;
 	}
 }

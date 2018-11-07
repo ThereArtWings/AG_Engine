@@ -34,8 +34,8 @@ public class Player extends Sprite {
 	@Override
 	public void update() {
 super.update();
-		velocity.y += this.gravity;
-		this.transform.position.y += velocity.y;
+	//	velocity.y += this.gravity;
+	//	this.transform.position.y += velocity.y;
 	}
 	@Override
 	public void render(){

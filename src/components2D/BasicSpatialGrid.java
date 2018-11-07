@@ -48,6 +48,10 @@ public class BasicSpatialGrid
 			{
 				globalMin.y = (int)bb.top;
 			}
+			if (bb.right > globalMax.x)
+			{
+				globalMax.x = (int)bb.right;
+			}
 			if (bb.bottom > globalMax.y)
 			{
 				globalMax.y = (int)bb.bottom;

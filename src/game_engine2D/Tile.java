@@ -3,10 +3,9 @@ package game_engine2D;
 import processing.core.PApplet;
 
 public class Tile extends Sprite {
+	
 	public int strokeColour;
 	public int fillColour;
-	
-	
 	
 	public Tile(PApplet p)
 	{

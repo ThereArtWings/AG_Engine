@@ -20,7 +20,7 @@ public class Launcher extends BaseLauncher{
         camera.cameraOffset.y = 0;
         this.gameManager.addObject(camera);
         int platforms = 500;
-        Tile platform;
+        Platform platform;
         int tw = 50;
         int th = 20;
         int numPlatformsX = 2 * parent.width / tw;
@@ -34,6 +34,23 @@ public class Launcher extends BaseLauncher{
         	this.gameManager.addObject(platform);
         	this.gameManager.addGameBoundingBoxes(platform);
         }
+        
+        for (int i = 0; i < platforms; i++)
+        {
+        	Platform platformL = new Platform(parent, 10 + i * 50, parent.height-700, 50, 50);
+        	platformL.start();
+        	this.gameManager.addObject(platformL);
+        	this.gameManager.addGameBoundingBoxes(platformL);
+        }
+        
+        for (int i = 0; i < platforms; i++)
+        {
+        	Platform platformL2 = new Platform(parent, 10 + i * 50, parent.height-50, 50, 50);
+        	platformL2.start();
+        	this.gameManager.addObject(platformL2);
+        	this.gameManager.addGameBoundingBoxes(platformL2);
+        }
+        
         this.gameManager.StartAll(); 
     }
 	  public void UpdateAll(){

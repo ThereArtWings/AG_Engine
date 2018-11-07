@@ -9,31 +9,38 @@ public class Platform extends Tile{
 	private PVector size = new PVector(48, 12);
 	public int stroke = parent.color(255, 255, 255);
 	public int fill = parent.color(61, 255, 255);
-
-	public Platform(PApplet p) {
+	
+	public Platform(PApplet p)
+	{
 		super(p);
 	}
-	
+
 	 public Platform(PApplet p, float x, float y, float w, float h) {
 			super(p);
 			 this.transform.position.x = x;
 			 this.transform.position.y = y;
+			 this.strokeColour = parent.color(255, 255, 255);
+			 this.fillColour = parent.color(33, 10, 155);
 	    }
-	
+	@Override
 	 public void start() {
-		
+		super.start();
+		this.transform.localBoundingBox.fromSize(size);
 	 }
 	 	@Override
 		public void update() {
-
+	 		super.update();
 		}
 		
 		@Override
 		public void render(){
-			
-			parent.fill(this.fill);
+			parent.pushMatrix();
+			parent.translate(this.transform.position.x, this.transform.position.y);
+			parent.fill(this.fillColour);
+			parent.rectMode(PApplet.CENTER);
 			parent.stroke(this.stroke);
-			parent.rect(this.transform.position.x, this.transform.position.y, this.size.x, this.size.y);
+			parent.rect(0, 0, this.size.x, this.size.y);
+			parent.popMatrix();
 
 		}
 

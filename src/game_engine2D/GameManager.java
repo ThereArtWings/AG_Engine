@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import components2D.BoundingBox;
 import components2D.BasicSpatialGrid;
 
-public class GameManager extends ProcessingEntity {
+public class GameManager {
     public PApplet parent;
     public int background = 0;
     private ArrayList <GameObject> gameObjects;
@@ -19,9 +19,8 @@ public class GameManager extends ProcessingEntity {
     public static BasicSpatialGrid basicSpatialGrid;
     
     public GameManager(PApplet p){
-    	super(p);
-        this.name = "gameManager";
-        gameObjects = new ArrayList<GameObject>();
+        parent = p;
+        this.Init();
     }
     
     public void Init()
@@ -55,7 +54,7 @@ public class GameManager extends ProcessingEntity {
             GameObject g = gameObjects.get(i);
             g.start();
         }
-        basicSpatialGrid = new BasicSpatialGrid(parent.height,2);
+       basicSpatialGrid = new BasicSpatialGrid(parent.height,2);
     }
     public void UpdateAll() {
     	parent.pushMatrix();

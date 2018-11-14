@@ -17,5 +17,12 @@ public abstract class BaseLauncher {
     public void UpdateAll(){
         gameManager.UpdateAll();
     }
+    public void keyPressed(char key, int keyCode) {
+    	gameManager.keyPressed(key, keyCode);
+    }
+    
+    public void keyReleased(char key, int keyCode) {
+    	gameManager.keyReleased(key, keyCode);
+    }
 
 }

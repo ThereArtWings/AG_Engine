@@ -1,6 +1,5 @@
 package game_engine2D;
 
-import processing.core.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 import java.util.ArrayList;
@@ -20,6 +19,9 @@ public class GameManager {
     
     public GameManager(PApplet p){
         parent = p;
+
+        screenOffset.x = parent.width / 2;
+        screenOffset.y = parent.height / 2;
         this.Init();
     }
     
@@ -58,7 +60,7 @@ public class GameManager {
     }
     public void UpdateAll() {
     	parent.pushMatrix();
-    	//parent.translate(offset.x, offset.y);
+    	parent.translate(offset.x, offset.y);
     	parent.background(background);
         for(int i = 0; i < gameObjects.size(); i++){
         	
@@ -68,6 +70,23 @@ public class GameManager {
         }
         frameCount ++;
         parent.popMatrix();
+    }
+    
+    public void keyPressed(char key, int keyCode)
+    {
+    	for (int i = 0; i < playerGameObjects.size(); i++)
+    	{
+    	GameObject g = playerGameObjects.get(i);
+    	g.keyPressed(key,  keyCode);
+    	}
+    }
+    
+    public void keyReleased(char key, int keyCode)
+    {
+    	for (int i = 0; i < playerGameObjects.size(); i++)
+    			{
+    		GameObject g = playerGameObjects.get(i);
+    		g.keyReleased(key, keyCode);    			}
     }
 
 }

@@ -12,14 +12,13 @@ public class Physics2D extends GameComponent {
 	int frameDelay = 2;
 	private PVector velocity = new PVector(0, 0);
 	public BoxCollider2D boxCollider2D;
-	float gravity = 0.2f;
-	float friction = 0.5f;
+	float gravity = 0.1f;
+	float friction = 0.9f;
 	float frictionOveride = 1.0f;
 	float frictionNormal = 0.9f;
 	boolean isGrounded = false;
-	public float speed = 3f;
+	public float speed = 5f;
 	public float maxSpeed = 5f;
-//	public int collisionCount = 0;
 	
 	public Physics2D(GameObject g)
 	{
@@ -35,11 +34,11 @@ public class Physics2D extends GameComponent {
 	@Override
 	public void update()
 	{
-		if (GameManager.frameCount % frameDelay == 0)
+/*		if (GameManager.frameCount % frameDelay == 0)
 		{
 			
 		}
-		
+		*/
 		this.transform.prev_position.x = this.transform.position.x;
 		this.transform.prev_position.y = this.transform.position.y;
 		gravityEffect();
@@ -51,15 +50,18 @@ public class Physics2D extends GameComponent {
 		
 		if (PApplet.abs(velocity.x) >= maxSpeed)
 		{
-			if (velocity.x > 0)
+			if (velocity.x > 0) {
 				velocity.x = maxSpeed;
+			}
 			else
+			{
 				velocity.x = -maxSpeed;
+			}
 		}
 		
 		if(isGrounded && PApplet.abs(velocity.x) <= 0.1f)
 		{
-			//velocity.x =  0f;
+			velocity.x =  0f;
 		}
 		
 		this.transform.position.add(velocity);
@@ -99,7 +101,7 @@ public class Physics2D extends GameComponent {
 					if(!this.isGrounded)
 					{
 						this.isGrounded = true;
-						velocity.x *= 0.5f;
+						this.velocity.x *= 0.5f;
 					}
 					break;
 				case LEFT:
@@ -114,7 +116,7 @@ public class Physics2D extends GameComponent {
 					break;
 
 				case NONE:
-//				this.isGrounded = false;
+				this.isGrounded = false;
 				break;
 				}
 			}
@@ -129,7 +131,7 @@ public class Physics2D extends GameComponent {
 	{
 		if (this.isGrounded)
 		{
-			velocity.y =- force;
+			velocity.y = -force;
 			isGrounded = false;
 		}
 	}
@@ -147,16 +149,16 @@ public class Physics2D extends GameComponent {
 	
 	public void move (float force)
 	{
-		if (isGrounded) {
+		//if (isGrounded) {
 			this.friction = this.frictionOveride;
-			velocity.x += force;
-		}
+			this.velocity.x += force;
+		//}
 	}
 	public void keyUp ()
 	{
-		if (isGrounded)
-		{
+		//if (isGrounded)
+		//{
 			this.friction = this.frictionNormal;
-		}
+		//}
 	}
 }

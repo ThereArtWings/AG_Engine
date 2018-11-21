@@ -34,6 +34,7 @@ public class GameManager {
     
     public void addGameBoundingBoxes(GameObject b)
     {
+    	b.ID = gameBoundingBoxes.size();
     	gameBoundingBoxes.add(b.transform.NewWorldBoundingBox());
     }
     

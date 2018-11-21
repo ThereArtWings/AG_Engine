@@ -6,6 +6,8 @@ import processing.core.PVector;
 
 public abstract class Sprite extends GameObject {
 	
+	public int strokeColour;
+	public int fillColour;
 	
 	public PVector size = new PVector(12, 12);
 	

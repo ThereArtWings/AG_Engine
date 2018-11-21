@@ -1,11 +1,11 @@
 package game_engine2D;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 public class Tile extends Sprite {
 	
-	public int strokeColour;
-	public int fillColour;
+	public PVector size = new PVector(48, 12);
 	
 	public Tile(PApplet p)
 	{
@@ -16,6 +16,7 @@ public class Tile extends Sprite {
 		super(p);
 		this.size.x = w;
 		this.size.y = h;
+		
 		this.strokeColour = parent.color(255, 255, 255);
 		this.fillColour = parent.color(33, 10, 155);
 	}

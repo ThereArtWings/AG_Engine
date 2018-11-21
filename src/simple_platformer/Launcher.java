@@ -60,56 +60,47 @@ public class Launcher extends BaseLauncher{
         player.start();
         this.gameManager.addObject(player);
         this.gameManager.addPlayerGameObject(player);
-        Camera camera = new Camera(parent, player, 0);
+        Camera camera = new Camera(parent, player, -10);
         camera.cameraOffset.y = 0;
         this.gameManager.addObject(camera);
         
-        int platforms = 500;
-        
         Platform platform;
+        Wall wall;
         
         int tw = 50;
         int th = 20;
-        int numPlatformsX = 2 * parent.width / tw;
-        int numPlatformsY = 2 * parent.height / th;
-        for (int i = 0; i < platforms; i++) 
+
+        for (int i = 0; i < 13; i++)
         {
-        	int x = (int) parent.random(0, numPlatformsX) * tw;
-        	int y = (int) parent.random(-numPlatformsY, numPlatformsY) * th;
-        	platform = new Platform(parent, x, y, tw, th);
-        	platform.start();
-        	this.gameManager.addObject(platform);
-        	this.gameManager.addGameBoundingBoxes(platform);
-        }
-        
-        for (int i = 0; i < 40; i++)
-        {
-        	platform = new Platform(parent, i * tw, parent.height * 2, tw, th);
-        	platform.start();
+        	platform = new Platform(parent, i * tw, parent.height, tw, th);
+        	
         	platform.strokeColour = parent.color(0, 200, 200);
         	platform.fillColour = parent.color(0, 200, 200);
         	this.gameManager.addObject(platform);
+        	platform.start();
         	this.gameManager.addGameBoundingBoxes(platform);
         }
         
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 300; i++)
         {
-        	platform = new Platform(parent, 0, (-parent.height * 3) + (th + 2) * i, tw, th);
-        	platform.start();
-        	platform.strokeColour = parent.color(0, 200, 200);
-        	platform.fillColour = parent.color(0, 200, 200);
-        	this.gameManager.addObject(platform);
-        	this.gameManager.addGameBoundingBoxes(platform);
+        	wall = new Wall(parent, -20, (-parent.height) + (th) * i, tw, th);
+        	
+        	wall.strokeColour = parent.color(0, 200, 200);
+        	wall.fillColour = parent.color(0, 200, 200);
+        	this.gameManager.addObject(wall);
+        	wall.start();
+        	this.gameManager.addGameBoundingBoxes(wall);
         }
         
-        for (int i = 0; i < 200; i++)
+        for (int i = 0; i < 300; i++)
         {
-        	platform = new Platform(parent, parent.width * 2, (-parent.height * 3) + th * i, tw, th);
-        	platform.start();
-        	platform.strokeColour = parent.color(0, 200, 200);
-        	platform.fillColour = parent.color(0, 200, 200);
-        	this.gameManager.addObject(platform);
-        	this.gameManager.addGameBoundingBoxes(platform);
+        	wall = new Wall(parent, parent.width - 10, (-parent.height * 1) + (th) * i, tw, th);
+        	
+        	wall.strokeColour = parent.color(0, 200, 200);
+        	wall.fillColour = parent.color(0, 200, 200);
+        	this.gameManager.addObject(wall);
+        	wall.start();
+        	this.gameManager.addGameBoundingBoxes(wall);
         }
         
         this.gameManager.StartAll();

@@ -4,24 +4,23 @@ import game_engine2D.Sprite;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Platform extends Sprite{
-
-	public int stroke = parent.color(0, 150, 150);
+public class Wall extends Sprite{
+	
+	public int stroke = parent.color(255, 255, 255);
 	public int fill = parent.color(61, 255, 255);
 	
-	public Platform(PApplet p)
+	public Wall(PApplet p)
 	{
 		super(p);
 	}
 
-	 public Platform(PApplet p, float x, float y, float w, float h) {
+	 public Wall(PApplet p, float x, float y, float w, float h) {
 			super(p);
-			size = new PVector(48, 18);
+			size = new PVector(5, 50);
 			 this.transform.position.x = x;
 			 this.transform.position.y = y;
-			 
-			 this.strokeColour = parent.color(255, 255, 255);
-			 this.fillColour = parent.color(33, 10, 155);
+			 this.strokeColour = parent.color(0, 255, 255);
+			 this.fillColour = parent.color(255, 255, 155);
 	    }
 	@Override
 	 public void start() {

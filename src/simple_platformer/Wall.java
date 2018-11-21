@@ -7,7 +7,6 @@ import processing.core.PVector;
 public class Wall extends Sprite{
 	
 	public int stroke = parent.color(255, 255, 255);
-	public int fill = parent.color(61, 255, 255);
 	
 	public Wall(PApplet p)
 	{
@@ -19,8 +18,6 @@ public class Wall extends Sprite{
 			size = new PVector(5, 50);
 			 this.transform.position.x = x;
 			 this.transform.position.y = y;
-			 this.strokeColour = parent.color(0, 255, 255);
-			 this.fillColour = parent.color(255, 255, 155);
 	    }
 	@Override
 	 public void start() {

@@ -85,8 +85,8 @@ public class Launcher extends BaseLauncher{
         {
         	wall = new Wall(parent, -20, (-parent.height) + (th) * i, tw, th);
         	
-        	wall.strokeColour = parent.color(0, 200, 200);
-        	wall.fillColour = parent.color(0, 200, 200);
+        	wall.strokeColour = parent.color(0, 0, 0);
+        	wall.fillColour = parent.color(0, 0, 0);
         	this.gameManager.addObject(wall);
         	wall.start();
         	this.gameManager.addGameBoundingBoxes(wall);
@@ -96,8 +96,8 @@ public class Launcher extends BaseLauncher{
         {
         	wall = new Wall(parent, parent.width - 10, (-parent.height * 1) + (th) * i, tw, th);
         	
-        	wall.strokeColour = parent.color(0, 200, 200);
-        	wall.fillColour = parent.color(0, 200, 200);
+        	wall.strokeColour = parent.color(0, 0, 0);
+        	wall.fillColour = parent.color(0, 0, 0);
         	this.gameManager.addObject(wall);
         	wall.start();
         	this.gameManager.addGameBoundingBoxes(wall);

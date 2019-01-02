@@ -35,11 +35,15 @@ public abstract class Sprite extends GameObject {
 			comp.update();
 			comp.render();
 		}
+		this.transform.prev_position.x = this.transform.position.x;
+		this.transform.prev_position.y = this.transform.position.y;
+		
 	}
 
 	@Override
 	public void start() 
 	{
+		this.transform.localBoundingBox.fromSize(size);
 		for (int i = this.components.size() - 1; i >= 0; i--)
 		{
 			GameComponent comp = this.components.get(i);

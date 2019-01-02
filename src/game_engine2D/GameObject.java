@@ -11,6 +11,7 @@ public abstract class GameObject extends ProcessingEntity
 	public GameObject(PApplet p) {
 		super(p);
 		this.components = new ArrayList<GameComponent>();
+		this.transform.myGameObject = this;
 	}
 
 	public String name;

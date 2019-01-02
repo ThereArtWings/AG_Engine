@@ -34,13 +34,8 @@ public class Physics2D extends GameComponent {
 	@Override
 	public void update()
 	{
-/*		if (GameManager.frameCount % frameDelay == 0)
-		{
-			
-		}
-		*/
-		this.transform.prev_position.x = this.transform.position.x;
-		this.transform.prev_position.y = this.transform.position.y;
+		//this.transform.prev_position.x = this.transform.position.x;
+		//this.transform.prev_position.y = this.transform.position.y;
 		gravityEffect();
 		
 		if (this.isGrounded)

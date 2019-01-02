@@ -1,36 +1,35 @@
 package simple_platformer;
 
-import game_engine2D.Sprite;
+import game_engine2D.*;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Wall extends Sprite{
+public class Floors extends Sprite{
+
+	public int stroke = parent.color(0, 150, 150);
+	public float playerY;
 	
-	public int stroke = parent.color(255, 255, 255);
-	
-	public Wall(PApplet p)
+	public Floors(PApplet p)
 	{
 		super(p);
 	}
 
-	 public Wall(PApplet p, float x, float y, float w, float h) {
+	 public Floors(PApplet p, float x, float y, float w, float h) {
 			super(p);
-			size = new PVector(5, 50);
+			size = new PVector(50, 10);
 			 this.transform.position.x = x;
 			 this.transform.position.y = y;
-	    }
-	@Override
-	 public void start() {
+
+	 }
+
+	 public void start()
+	 {
 		super.start();
 		this.transform.localBoundingBox.fromSize(size);
 	 }
-	 	@Override
-		public void update() {
-	 		super.update();
-		}
-		
-		@Override
-		public void render(){
+	 
+		public void render()
+		{
 			parent.pushMatrix();
 			parent.translate(this.transform.position.x, this.transform.position.y);
 			parent.fill(this.fillColour);
@@ -38,7 +37,11 @@ public class Wall extends Sprite{
 			parent.stroke(this.stroke);
 			parent.rect(0, 0, this.size.x, this.size.y);
 			parent.popMatrix();
-
-		}
+		}	
+		
+		public void update()
+		{
+	 		super.update();
+	 	}
 
 }

@@ -12,6 +12,7 @@ public class Player extends Sprite {
 	private PVector size = new PVector(12,12);
 	public int stroke = parent.color(120,120,255);
 	public int fill = parent.color(255);
+	public float playerY = this.transform.position.y;
 
 	public Player(PApplet p) 
 	{
@@ -26,9 +27,10 @@ public class Player extends Sprite {
 	 
 	 public void start() 
 	 {
+		
 		 this.transform.position.x = parent.width / 2;
 		 this.transform.position.y = parent.height / 3;
-		 this.transform.localBoundingBox.fromSize(size);
+		 this.transform.localBoundingBox.fromSize( size);
 		 this.physics = new Physics2D(this);
 		 this.physics.start();
 		 this.physics.speed = speed;
@@ -38,7 +40,8 @@ public class Player extends Sprite {
 	public void update() 
 	{
 		super.update();
-
+		this.transform.prev_position.x = this.transform.position.x;
+		this.transform.prev_position.y = this.transform.position.y;
 	}
 	@Override
 	public void render(){
@@ -55,7 +58,6 @@ public class Player extends Sprite {
 		if (keyCode == PApplet.UP)
 		{
 			this.physics.jump(jump);
-			System.out.println("Test");
 		}
 		
 		if (keyCode == PApplet.LEFT)
@@ -69,8 +71,6 @@ public class Player extends Sprite {
 	}
 	public void keyReleased(char key, int keyCode)
 	{
-		//super.keyReleased(key, keyCode);
 		this.physics.keyUp();
-		
 	}
 }

@@ -1,14 +1,17 @@
 package components2D;
+
 import processing.core.PVector;
 
 public class BoundingBox {
+	
 	public BoundingBox() 
 	{
 		
 	}
 	
-	public BoundingBox(int _1, int _r, int _t, int _b)
+	public BoundingBox( int _1, int _r, int _t, int _b)
 	{
+	
 		this.left = _1;
 		this.right = _r;
 		this.top = _t;
@@ -17,8 +20,9 @@ public class BoundingBox {
 		this.center_y = 0;
 	}
 	
-	public void fromSize(PVector size)
+	public void fromSize( PVector size)
 	{
+
 		this.left = -size.x/2f;
 		this.right = size.x/2f;
 		this.top = -size.y/2f;

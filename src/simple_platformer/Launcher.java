@@ -2,8 +2,8 @@ package simple_platformer;
 
 
 import game_engine2D.*;
+import components2D.Physics2D;
 import processing.core.PApplet;
-
 
 public class Launcher extends BaseLauncher{
 	
@@ -38,6 +38,7 @@ public class Launcher extends BaseLauncher{
 	
 	public void StartGame()
 	{
+		
 		if (this.started)
 			return;
 		
@@ -63,27 +64,39 @@ public class Launcher extends BaseLauncher{
         Camera camera = new Camera(parent, player, -10);
         camera.cameraOffset.y = 0;
         this.gameManager.addObject(camera);
-        
+                
         Platform platform;
         Wall wall;
-        
+        Floors floor;
+
         int tw = 50;
         int th = 20;
-
-        for (int i = 0; i < 13; i++)
+        
+        for (int i = 0; i < 80; i++) 
         {
-        	platform = new Platform(parent, i * tw, parent.height, tw, th);
+        	int x = (int) parent.random(2, 12) * tw;
+        	int y = (int) parent.random(-10, 32) * th;
+        	floor = new Floors(parent, x, y, tw, th);
+        	floor.start();
+        	this.gameManager.addObject(floor);
+        	this.gameManager.addGameBoundingBoxes(floor);
+        }
+        
+       for (int i = 0; i < 1; i++)
+        {
+        	platform = new Platform(parent, parent.width / 2, parent.height, tw, th);
         	
         	platform.strokeColour = parent.color(0, 200, 200);
         	platform.fillColour = parent.color(0, 200, 200);
         	this.gameManager.addObject(platform);
+
         	platform.start();
         	this.gameManager.addGameBoundingBoxes(platform);
-        }
+        } 
         
         for (int i = 0; i < 300; i++)
         {
-        	wall = new Wall(parent, -20, (-parent.height) + (th) * i, tw, th);
+        	wall = new Wall(parent, 45, (-parent.height) + (th) * i, tw, th);
         	
         	wall.strokeColour = parent.color(0, 0, 0);
         	wall.fillColour = parent.color(0, 0, 0);
@@ -94,13 +107,27 @@ public class Launcher extends BaseLauncher{
         
         for (int i = 0; i < 300; i++)
         {
-        	wall = new Wall(parent, parent.width - 10, (-parent.height * 1) + (th) * i, tw, th);
+        	wall = new Wall(parent, parent.width - 40, (-parent.height * 1) + (th) * i, tw, th);
         	
         	wall.strokeColour = parent.color(0, 0, 0);
         	wall.fillColour = parent.color(0, 0, 0);
         	this.gameManager.addObject(wall);
         	wall.start();
         	this.gameManager.addGameBoundingBoxes(wall);
+        	
+        }
+        
+        int a = 0;
+        int b = 5;
+        
+        if (a > b)
+        {
+            this.gameManager.removeObject(player);
+        }
+        
+        else
+        {
+        	a ++;
         }
         
         this.gameManager.StartAll();
@@ -114,5 +141,4 @@ public class Launcher extends BaseLauncher{
 	        parent.textSize(18);
 	        parent.text("Hit 'B' to reload", 5, 20);
 	    }
-
 }

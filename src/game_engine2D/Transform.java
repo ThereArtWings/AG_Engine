@@ -8,12 +8,13 @@ public class Transform {
 	public Transform() {
 		
 	}
+	public GameObject myGameObject;
 	public PVector position = new PVector(0,0);
 	public PVector rotation = new PVector(0,0);
 	public PVector scale = new PVector(0,0);
 	public PVector prev_position = new PVector(0, 0);
-	public BoundingBox localBoundingBox = new BoundingBox(-1,1, -1,1);
-	public BoundingBox worldBoundingBox = new BoundingBox(-1,1, -1,1);
+	public BoundingBox localBoundingBox = new BoundingBox( -1,1, -1,1);
+	public BoundingBox worldBoundingBox = new BoundingBox( -1,1, -1,1);
 	
 	public BoundingBox PreviousWorldBoundingBox()
 	{
@@ -29,7 +30,7 @@ public class Transform {
 	public BoundingBox NewWorldBoundingBox ()
 	{
 		
-		this.worldBoundingBox = new BoundingBox();
+		//this.worldBoundingBox = new BoundingBox();
 		this.worldBoundingBox.center_x = position.x;
 		this.worldBoundingBox.center_y = position.y;
 		this.worldBoundingBox.left = position.x + localBoundingBox.left;

@@ -4,6 +4,7 @@ package simple_platformer;
 import game_engine2D.*;
 import components2D.Physics2D;
 import processing.core.PApplet;
+import java.util.concurrent.TimeUnit;
 
 public class Launcher extends BaseLauncher{
 	
@@ -22,12 +23,50 @@ public class Launcher extends BaseLauncher{
 		{
 			this.Reload();
 		}
+		
+		if (keyCode == 'c' || keyCode == 'C')
+		{
+			this.Editor();
+		}
 	}
 	
 	public void keyReleased(char key, int keyCode)
 	{
 		super.keyReleased(key, keyCode);
 
+	}
+	
+	public void Editor()
+	{
+        Platform platform;
+        Wall wall;
+        Floors floor;
+
+        int tw = 50;
+        int th = 20;
+		
+        for (int i = 0; i < 300; i++)
+        {
+        	wall = new Wall(parent, 45, (-parent.height) + (th) * i, tw, th);
+        	
+        	wall.strokeColour = parent.color(0, 0, 0);
+        	wall.fillColour = parent.color(0, 0, 0);
+        	this.gameManager.addObject(wall);
+        	wall.start();
+        	this.gameManager.addGameBoundingBoxes(wall);
+        }
+        
+        for (int i = 0; i < 300; i++)
+        {
+        	wall = new Wall(parent, parent.width - 40, (-parent.height * 1) + (th) * i, tw, th);
+        	
+        	wall.strokeColour = parent.color(0, 0, 0);
+        	wall.fillColour = parent.color(0, 0, 0);
+        	this.gameManager.addObject(wall);
+        	wall.start();
+        	this.gameManager.addGameBoundingBoxes(wall);
+        }
+        this.started = true;
 	}
 	
 	public void Reload()
@@ -114,7 +153,6 @@ public class Launcher extends BaseLauncher{
         	this.gameManager.addObject(wall);
         	wall.start();
         	this.gameManager.addGameBoundingBoxes(wall);
-        	
         }
         
         int a = 0;
@@ -137,8 +175,13 @@ public class Launcher extends BaseLauncher{
 	
 	  public void UpdateAll(){
 	        super.UpdateAll();
+	        
+	        if (started == false) {
 	        parent.fill(255);
 	        parent.textSize(18);
 	        parent.text("Hit 'B' to reload", 5, 20);
+	        parent.text("Hit 'C' to access editor", 5, 60);
+	        }
+	         
 	    }
 }

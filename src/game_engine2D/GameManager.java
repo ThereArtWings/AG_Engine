@@ -5,6 +5,8 @@ import processing.core.PVector;
 import java.util.ArrayList;
 import components2D.BoundingBox;
 import components2D.BasicSpatialGrid;
+import java.awt.event.MouseAdapter;
+import javax.swing.event.MouseInputAdapter;
 
 public class GameManager {
     public PApplet parent;
@@ -43,13 +45,30 @@ public class GameManager {
     	playerGameObjects.add(b);
     }
 
-    public void addObject(GameObject g){
+    public void addObject(GameObject g)
+    {
         gameObjects.add(g);
     }
     
-    public void removeObject(GameObject g){
+    public void removeObject(GameObject g)
+    {
         gameObjects.remove(gameObjects.lastIndexOf(g));
     }
+    
+	public void replaceObjects(ArrayList<GameObject> _gameObjects)
+	{
+		gameObjects = _gameObjects;
+	}
+
+	public void replacePlayerObjects(ArrayList<GameObject> _gameObjects)
+	{
+		playerGameObjects = _gameObjects;
+	}
+	
+	public void replaceBoundingBoxes(ArrayList<BoundingBox> _boundingBoxes)
+	{
+		gameBoundingBoxes = _boundingBoxes;
+	}
     
     public void StartAll() {
     	
@@ -89,5 +108,20 @@ public class GameManager {
     		GameObject g = playerGameObjects.get(i);
     		g.keyReleased(key, keyCode);    			}
     }
+	public void mousePressed() {
+		for (int i = 0; i < playerGameObjects.size(); i++) {
+			// send key press to player
+			GameObject g = playerGameObjects.get(i);
+			g.mousePressed();
+		}
+	}
+
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+		for (int i = 0; i < playerGameObjects.size(); i++) {
+			// send key press to player
+			GameObject g = playerGameObjects.get(i);
+			g.mouseClicked(mouseX, mouseY, mouseButton);
+		}
+	}
 
 }

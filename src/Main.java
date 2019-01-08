@@ -26,5 +26,7 @@ public class Main extends PApplet {
 		launcher.keyReleased(key, keyCode);
 		
 	}
-
+	public void mouseClicked() {
+		launcher.mouseClicked(mouseX, mouseY, mouseButton);
+	}
 }

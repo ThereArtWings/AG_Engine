@@ -24,5 +24,8 @@ public abstract class BaseLauncher {
     public void keyReleased(char key, int keyCode) {
     	gameManager.keyReleased(key, keyCode);
     }
+	public void mouseClicked(int mouseX, int mouseY, int mouseButton) {
+		gameManager.mouseClicked(mouseX, mouseY, mouseButton);
+	}
 
 }

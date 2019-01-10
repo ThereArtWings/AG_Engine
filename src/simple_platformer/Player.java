@@ -46,7 +46,7 @@ public class Player extends Sprite {
 		this.transform.prev_position.x = this.transform.position.x;
 		this.transform.prev_position.y = this.transform.position.y;
 		
-        if (this.transform.position.y <= -140)
+        if (this.transform.position.y <= -60)
         {
         	this.UpdateAll();
         }
@@ -87,11 +87,11 @@ public class Player extends Sprite {
 	
 	public void UpdateAll()
 	{
-		parent.text("You Win",  this.transform.position.x - 30, this.transform.position.y - 17);
+
 		
 		parent.textSize(20);
         parent.fill(255);
-        
+        		parent.text("You Win",  this.transform.position.x - 30, this.transform.position.y - 17);
 	}
 }
 

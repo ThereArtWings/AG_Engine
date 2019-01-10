@@ -60,7 +60,6 @@ public class Launcher extends BaseLauncher{
 	        
 	        if (this.parent.mouseButton == 37)
 	        {
-	            parent.println("Help me");
 	        	floor = new Floors(parent, x, y, tw, th);
 	        	floor.start();
 	        	this.gameManager.addObject(floor);
@@ -77,10 +76,9 @@ public class Launcher extends BaseLauncher{
 
         int tw = 50;
         int th = 20;
-        
+        this.gameManager.Init();
         if (this.parent.mouseButton == 37)
         {
-            parent.println("Help me");
         	floor = new Floors(parent, this.parent.mouseX, this.parent.mouseY, tw, th);
         	floor.start();
         	this.gameManager.addObject(floor);
@@ -111,10 +109,6 @@ public class Launcher extends BaseLauncher{
         	
         	
         }
-        
-        
-        
-        
         this.started = true;
 	}
 	
@@ -242,10 +236,7 @@ public class Launcher extends BaseLauncher{
 	        parent.text("Hit 'C' to access editor", 220, 220);
 	        
 	        UIElement UIPiece1;
-	        UIElement UIPiece2;
-       
-	        
-	        
+	        UIElement UIPiece2;   
 	        
         	UIPiece1 = new UIElement(parent, parent.width / 2, parent.height - 500, 0, 0);        	
         	UIPiece1.strokeColour = parent.color(0, 200, 200);
